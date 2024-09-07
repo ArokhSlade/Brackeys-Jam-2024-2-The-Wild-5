@@ -1,6 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3xg2xga7qmev"]
+[gd_scene load_steps=4 format=3 uid="uid://c8775lpnxlt41"]
 
-[ext_resource type="Script" path="res://test_player_00.gd" id="1_vji8x"]
+[sub_resource type="GDScript" id="GDScript_332id"]
+script/source = "extends CharacterBody3D
+
+
+@export var SPEED = 5.0
+@export var JUMP_VELOCITY = 4.5
+var target_velocity = Vector3.ZERO
+
+func _physics_process(delta):
+	
+	
+	if not is_on_floor():
+		target_velocity += get_gravity() * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
+		target_velocity.y = JUMP_VELOCITY
+
+	var direction = Input.get_action_strength(\"run_right\") - Input.get_action_strength(\"run_left\")
+	
+	if direction:
+		target_velocity.x = direction * SPEED
+	else:
+		target_velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	velocity = target_velocity
+
+	move_and_slide()
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fs05g"]
 size = Vector3(0.3, 1.6, 0.3)
@@ -9,7 +37,7 @@ size = Vector3(0.3, 1.6, 0.3)
 size = Vector3(0.3, 1.6, 0.3)
 
 [node name="TestPlayer_00" type="CharacterBody3D"]
-script = ExtResource("1_vji8x")
+script = SubResource("GDScript_332id")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_fs05g")
