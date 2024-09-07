@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://df5vg8y2ikf14"]
+
+[ext_resource type="PackedScene" uid="uid://keq0kv5inaqc" path="res://platform_00.tscn" id="1_aeq8m"]
+[ext_resource type="Script" path="res://test_level_00.gd" id="1_nvw2d"]
+[ext_resource type="PackedScene" uid="uid://bx8kw10gefpc6" path="res://dummy_2.tscn" id="4_rht0l"]
+[ext_resource type="PackedScene" uid="uid://c8jvilwoj4mhj" path="res://dummy_3.tscn" id="5_d2rky"]
+[ext_resource type="PackedScene" uid="uid://755hr1sm5kk2" path="res://dummy.tscn" id="5_k5fkh"]
+
+[sub_resource type="Curve3D" id="Curve3D_cyytf"]
+_data = {
+"points": PackedVector3Array(2.7, 1.3, 0.3, -2.7, 0, -0.3, -2.644, 0, 7.072, -1.3, 0, 4.1, 1.3, 0, -4.1, -8.478, 0, -0.011, -1.9, 0, -1.7, 1.9, 0, 1.7, 4.23, 0, -2.414, 2.3, 0, -2.8, -2.3, 0, 2.8, 6, 0, 5, 0, 0, 0, 0, 0, 0, -2.644, 0, 7.072),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="TestLevel_00" type="Node" node_paths=PackedStringArray("path")]
+script = ExtResource("1_nvw2d")
+path = NodePath("Path3D/PathFollow3D")
+
+[node name="Camera3D wide" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.541675, 0.45452, 2.98023e-08, 0.642788, 0.766044, -0.707107, -0.541675, 0.45452, 17.02, 10.1963, 8.43422)
+size = 21.72
+
+[node name="Camera3D 1" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 18, 0)
+visible = false
+projection = 1
+size = 27.434
+
+[node name="Camera3D top" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 18, 0)
+visible = false
+projection = 1
+size = 27.434
+
+[node name="Platform_00" parent="." instance=ExtResource("1_aeq8m")]
+collision_layer = 0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.0762575, 0.993653, -0.0826926, -0.383758, 0.105794, 0.917354, 0.92028, -0.0382212, 0.38939, 3.81537, 9.32849, 0)
+light_energy = 3.101
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+curve = SubResource("Curve3D_cyytf")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(0.11043, 0, 0.993876, 0, 0.999978, 0, -0.993873, 0, 0.110431, -2.644, 0, 7.072)
+
+[node name="Dummy" parent="." node_paths=PackedStringArray("path") instance=ExtResource("5_k5fkh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.807739, 0)
+rotation_edit_mode = 2
+path = NodePath("../Path3D/PathFollow3D")
+
+[node name="Dummy2" parent="." node_paths=PackedStringArray("path") instance=ExtResource("4_rht0l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+rotation_edit_mode = 2
+path = NodePath("../Path3D/PathFollow3D")
+
+[node name="Dummy3" parent="." node_paths=PackedStringArray("path") instance=ExtResource("5_d2rky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+path = NodePath("../Path3D/PathFollow3D")

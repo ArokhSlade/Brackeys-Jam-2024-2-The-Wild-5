@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://755hr1sm5kk2"]
+
+[ext_resource type="Script" path="res://dummy.gd" id="1_6plkn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yohcg"]
+size = Vector3(0.25, 1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwvap"]
+albedo_color = Color(0.942953, 0.60929, 0.328974, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fe5qv"]
+material = SubResource("StandardMaterial3D_hwvap")
+size = Vector3(0.25, 1, 0.5)
+
+[node name="Dummy" type="Node3D"]
+script = ExtResource("1_6plkn")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+rotation_edit_mode = 2
+collision_layer = 0
+collision_mask = 0
+axis_lock_linear_y = true
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_yohcg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_fe5qv")
+skeleton = NodePath("../..")
