@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cicxu68eotaml"]
+
+[ext_resource type="PackedScene" uid="uid://bv00gxi6amoc2" path="res://assets/Cube_Test.blend" id="1_4eiwc"]
+[ext_resource type="Script" path="res://cube_test.gd" id="2_jddd7"]
+
+[node name="Cube_Test" instance=ExtResource("1_4eiwc")]
+script = ExtResource("2_jddd7")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/rotation = Quaternion(1.76143e-08, 4.32494e-09, -0.07256, 0.997364)
+bones/2/rotation = Quaternion(1.60191e-07, 2.16438e-08, -0.513483, 0.8581)

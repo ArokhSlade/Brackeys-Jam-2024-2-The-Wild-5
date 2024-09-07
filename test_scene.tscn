@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvnyyiyud1bme"]
+
+[ext_resource type="PackedScene" uid="uid://cicxu68eotaml" path="res://cube_test.tscn" id="1_0sj1r"]
+[ext_resource type="Script" path="res://test_scene.gd" id="1_fw1sx"]
+
+[node name="TestScene" type="Node3D"]
+script = ExtResource("1_fw1sx")
+
+[node name="Cube_Test" parent="." instance=ExtResource("1_0sj1r")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -0.977512, 6.99458, 19)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 9, 7, 0)
